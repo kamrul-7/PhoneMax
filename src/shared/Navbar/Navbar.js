@@ -4,9 +4,10 @@ import logo from '../../assects/logo/logo.png'
 const Navbar = () => {
     const menuItem = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/appointment'>Appointment</Link></li>
+        <li><Link to='/appointment'>Categories</Link></li>
         <li><Link to='/'>Reviews</Link></li>
         <li><Link to='/'>Contract Us</Link></li>
+        <li><Link to='/login'>Login</Link></li>
     </React.Fragment>
     return (
         <div className="navbar bg-base-100 flex justify-between">
@@ -20,7 +21,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <img className='w-64 h-20 rounded-lg hidden lg:inline' src={logo} alt="" />
-                <Link to='/' className="btn btn-ghost normal-case text-xl"> Phone Max</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl"> PhoneMax</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
