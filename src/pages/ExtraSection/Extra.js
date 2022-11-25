@@ -1,0 +1,18 @@
+import React from 'react';
+
+const Extra = ({ section }) => {
+    const { name, icon, bgClass } = section;
+    return (
+        <div className={`card p-6 md:card-side shadow-xl px-6 ${bgClass}`}>
+            <figure>
+                <img src={icon} alt="img" />
+            </figure>
+            <div className="card-body">
+                <h2 className="card-title">{name}</h2>
+
+            </div>
+        </div>
+    );
+};
+
+export default Extra;
