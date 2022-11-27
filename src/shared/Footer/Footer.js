@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../hooks/title/UseTitle';
 
 const Footer = () => {
+    useTitle('About Us')
     return (
         <footer className="footer footer-center p-10 bg-slate-800 text-white rounded">
             <div className="grid grid-flow-col gap-4">

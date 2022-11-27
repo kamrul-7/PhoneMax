@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaStar, FaEye } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/title/UseTitle';
 const Product = ({ item }) => {
+    useTitle('All Products')
     const { title, total_view, rating, image_url, name, location, year_of_used, resale_price, original_price, time } = item;
 
     return (

@@ -10,6 +10,7 @@ const Products = () => {
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
                 {
                     products.map(item => <Product
+                        key={item.id}
                         item={item}
                     ></Product>
                     )

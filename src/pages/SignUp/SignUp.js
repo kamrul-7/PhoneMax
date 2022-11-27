@@ -1,20 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast, useToaster } from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
-// import useToken from '../../hooks/UseToken';
+import useTitle from '../../hooks/title/UseTitle';
+import useToken from '../../hooks/UseToken';
 const SignUp = () => {
+    useTitle('SignUp')
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('')
 
     const [createdUserEmail, setCreatedUserEmail] = useState('');
-    // const [token] = useToken(createdUserEmail)
+    const [token] = useToken(createdUserEmail)
     const navigate = useNavigate();
-    // if (token) {
-    //     navigate('/');
-    // }
+    if (token) {
+        navigate('/');
+    }
 
     const handleSignUp = (data) => {
         setSignUpError('')

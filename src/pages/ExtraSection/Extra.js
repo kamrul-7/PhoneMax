@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../hooks/title/UseTitle';
 
 const Extra = ({ section }) => {
+    useTitle('Review')
     const { name, icon, bgClass } = section;
     return (
         <div className={`card p-6 md:card-side shadow-xl px-6 ${bgClass}`}>

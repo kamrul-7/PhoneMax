@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const LeftSideNavBar = () => {
+const ProductCategories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('http://localhost:5000/product-categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
@@ -22,7 +22,7 @@ const LeftSideNavBar = () => {
                         <figure className="">
                             <img src={category.img} alt="Phones" className="rounded-xl" />
                         </figure>
-                        <Link to={`/category/${category.id}`} className='text-center text-xl font-bold'>{category.name}</Link>
+                        <Link to={`/categories/${category.id}`} className='text-center text-xl font-bold'>{category.name}</Link>
                     </div>)
                 }
             </div>
@@ -30,4 +30,4 @@ const LeftSideNavBar = () => {
     );
 };
 
-export default LeftSideNavBar;
+export default ProductCategories;

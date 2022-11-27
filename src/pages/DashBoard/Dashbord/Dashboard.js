@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DisplayError = () => {
+const Dashboard = () => {
     return (
         <div>
-
+            <h2>Cooming</h2>
         </div>
     );
 };
 
-export default DisplayError;
+export default Dashboard;
