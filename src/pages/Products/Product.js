@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar, FaEye } from "react-icons/fa";
 import useTitle from '../../hooks/title/UseTitle';
-const Product = ({ item }) => {
+const Product = ({ item, setProduct }) => {
     useTitle('All Products')
     const { title, total_view, rating, image_url, name, location, year_of_used, resale_price, original_price, time } = item;
 
@@ -29,6 +29,13 @@ const Product = ({ item }) => {
                     <p className='ml-4'><small>Resale Price: <strong>$ {resale_price}</strong></small></p>
                     <p><small>Uploaded Time: {time} A.M</small></p>
                     <p className='ml-4'><small>Used {year_of_used} years</small> </p>
+
+                </div>
+                <div className='card-actions justify-center'>
+                    <label
+                        htmlFor="booking-modal" className="btn btn-secondary text-white px-12"
+                        onClick={() => setProduct(item)}
+                    >Buy Now</label>
                 </div>
             </div >
         </div >

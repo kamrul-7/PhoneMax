@@ -1,17 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import DashboardLayout from '../../Layout/DashboardLayout'
 import Main from '../../Layout/Main';
 import Error from '../../others/Error';
 import Category from "../../pages/Categories/Category";
-import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
 import ExtraSection from "../../pages/ExtraSection/ExtraSection";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/login/Login";
 import Products from "../../pages/Products/Products";
 import SignUp from "../../pages/SignUp/SignUp";
 import Footer from "../../shared/Footer/Footer";
-import AdminRoute from "../AdminRoute/AdminRoute";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -54,22 +51,7 @@ const router = createBrowserRouter([
         ]
     },
 
-    {
-        path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        errorElement: <Error></Error>,
-        children: [
-
-            {
-                path: '/dashboard/allusers',
-                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-            },
 
 
-
-        ]
-    },
-],
-)
-
+])
 export default router;

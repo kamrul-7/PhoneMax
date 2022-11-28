@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar, FaEye } from "react-icons/fa";
-const ProductSummeryCard = ({ product }) => {
-    const { title, total_view, rating, image_url, name, location, year_of_used, resale_price, original_price, time } = product;
+const ProductSummeryCard = ({ item, setProduct }) => {
+    const { title, total_view, rating, image_url, name, location, year_of_used, resale_price, original_price, time } = item;
     return (
         <div className="card card-compact bg-base-100 shadow-xl bg-#f5dfdf-200">
             <figure><img className='m-2' src={image_url} alt="" /></figure>
@@ -26,6 +26,13 @@ const ProductSummeryCard = ({ product }) => {
                     <p className='ml-4'><small>Resale Price: <strong>$ {resale_price}</strong></small></p>
                     <p><small>Uploaded Time: {time} A.M</small></p>
                     <p className='ml-4'><small>Used {year_of_used} years</small> </p>
+
+                </div>
+                <div className='card-actions justify-center'>
+                    <label
+                        htmlFor="booking-modal" className="btn btn-secondary text-white px-12"
+                        onClick={() => setProduct(item)}
+                    >Buy Now</label>
                 </div>
             </div >
         </div >
