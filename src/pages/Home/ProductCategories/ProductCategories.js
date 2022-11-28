@@ -22,7 +22,7 @@ const ProductCategories = () => {
                         <figure className="">
                             <img src={category.img} alt="Phones" className="rounded-xl" />
                         </figure>
-                        <Link to={`/categories/${category.id}`} className='text-center text-xl font-bold'>{category.name}</Link>
+                        <Link to={`/category/${category.id}`} className='text-center text-xl font-bold'>{category.name}</Link>
                     </div>)
                 }
             </div>
