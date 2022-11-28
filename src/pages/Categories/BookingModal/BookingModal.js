@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const BookingModal = ({ product, setProduct }) => {
-    const { title, resale_price } = product;
+    const { title, resale_price, image_url } = product;
     const { user } = useContext(AuthContext);
 
     const handleBooking = event => {
@@ -14,6 +14,7 @@ const BookingModal = ({ product, setProduct }) => {
         const email = form.email.value;
         const phone = form.phone.value;
         const location = form.location.value;
+        const image_url = form.image_url.value;
         // [3, 4, 5].map((value, i) => console.log(value))
 
         const booking = {
@@ -22,7 +23,8 @@ const BookingModal = ({ product, setProduct }) => {
             email,
             phone,
             price: resale_price,
-            location
+            location,
+            image_url
         }
         // console.log(booking);
         fetch('http://localhost:5000/bookings', {
@@ -55,6 +57,7 @@ const BookingModal = ({ product, setProduct }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
+                        <input name="image_url" type="text" defaultValue={image_url} disabled placeholder="Image" className="input w-full input-bordered" />
                         <input name="price" type="text" defaultValue={resale_price} disabled placeholder="price" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <br />
