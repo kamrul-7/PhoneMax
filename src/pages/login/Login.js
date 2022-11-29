@@ -59,9 +59,10 @@ const Login = () => {
                             )}
                             className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-500'>{errors.password?.message}</p>}
-                        <label className="label"><span className="label-text">Forget Password?</span></label>
+
                     </div>
-                    <input className='btn btn-accent w-full' value='Login' type="submit" />
+
+                    <input className='btn btn-accent w-full mt-6' value='Login' type="submit" />
                     <div>
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
@@ -70,6 +71,7 @@ const Login = () => {
                 <div className="divider">OR</div>
                 <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
+
 
         </div>
     );

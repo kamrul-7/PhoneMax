@@ -38,7 +38,8 @@ const MyProducts = () => {
                         {
                             bookings?.map((booking, i) => <tr key={booking._id}>
                                 <th>{i + 1}</th>
-                                <td>{booking.itemName}</td>
+                                <td>{booking.
+                                    itemName}</td>
                                 <td>{booking.email}</td>
                                 <td>{booking.price}</td>
                                 <td>{booking.location}</td>

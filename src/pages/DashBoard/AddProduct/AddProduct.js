@@ -1,121 +1,81 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../Shared/Loading/Loading';
+import useTitle from '../../../hooks/title/UseTitle';
 
-const AddDoctor = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+const AddService = () => {
+    useTitle('Add Product')
+    const navigate = useNavigate()
+    const handlePlaceComment = event => {
 
-    const imageHostKey = process.env.REACT_APP_imgbb_key;
+        event.preventDefault();
+        const form = event.target;
+        const title = form.title.value;
+        const name = form.name.value;
+        const image_url = form.img.value;
+        const rating = form.rating.value;
+        const location = form.location.value;
+        const year_of_used = form.year_of_used.value;
+        const original_price = form.original_price.value;
+        const resale_price = form.resale_price.value;
+        const time = form.time.value;
+        const total_view = form.total_view.value;
 
-    const navigate = useNavigate();
 
-    const { data: specialties, isLoading } = useQuery({
-        queryKey: ['specialty'],
-        queryFn: async () => {
-            const res = await fetch('https://doctors-portal-server-rust.vercel.app/appointmentSpecialty');
-            const data = await res.json();
-            return data;
+        const product = {
+            title,
+            name,
+            image_url,
+            rating,
+            location,
+            year_of_used,
+            original_price,
+            resale_price,
+            time,
+            total_view
         }
-    })
-
-    const handleAddDoctor = data => {
-        const image = data.image[0];
-        const formData = new FormData();
-        formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
-        fetch(url, {
+        console.log(product)
+        fetch('http://localhost:5000/products', {
             method: 'POST',
-            body: formData
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
         })
             .then(res => res.json())
-            .then(imgData => {
-                if (imgData.success) {
-                    console.log(imgData.data.url);
-                    const doctor = {
-                        name: data.name,
-                        email: data.email,
-                        specialty: data.specialty,
-                        image: imgData.data.url
-                    }
-
-                    // save doctor information to the database
-                    fetch('https://doctors-portal-server-rust.vercel.app/doctors', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json',
-                            authorization: `bearer ${localStorage.getItem('accessToken')}`
-                        },
-                        body: JSON.stringify(doctor)
-                    })
-                        .then(res => res.json())
-                        .then(result => {
-                            console.log(result);
-                            toast.success(`${data.name} is added successfully`);
-                            navigate('/dashboard/managedoctors')
-                        })
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Product Added Successful');
+                    navigate('/product')
+                }
+                else {
+                    toast.error(data.message);
                 }
             })
-    }
 
-    if (isLoading) {
-        return <Loading></Loading>
     }
-
     return (
-        <div className='w-96 p-7'>
-            <h2 className="text-4xl">Add A Doctor</h2>
-            <form onSubmit={handleSubmit(handleAddDoctor)}>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Name</span></label>
-                    <input type="text" {...register("name", {
-                        required: "Name is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Email</span></label>
-                    <input type="email" {...register("email", {
-                        required: true
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Specialty</span></label>
-                    <select
-                        {...register('specialty')}
-                        className="select input-bordered w-full max-w-xs">
-                        {
-                            specialties.map(specialty => <option
-                                key={specialty._id}
-                                value={specialty.name}
-                            >{specialty.name}</option>)
-                        }
+        <div>
+            <form onSubmit={handlePlaceComment}>
 
 
-                    </select>
+                <div className='grid grid-cols-1 lg:grid-cols-2 my-12'>
+                    <input name="title" type="text" placeholder="Your title" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="name" type="text" placeholder="Your Name" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="img" type="text" placeholder="Your Image" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="rating" type="text" placeholder="Your rating" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="location" type="text" placeholder="Your location" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="year_of_used" type="text" placeholder="year of used" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="original_price" type="text" placeholder="original_price" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="resale_price" type="text" placeholder="resale_price" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="time" type="text" placeholder="Time" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
+                    <input name="total_view" type="text" placeholder="total_view" className="input input-ghost border-red-800 mt-6 mr-16 input-bcommentsed" required />
                 </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Photo</span></label>
-                    <input type="file" {...register("image", {
-                        required: "Photo is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
-                </div>
-                <input className='btn btn-accent w-full mt-4' value="Add Doctor" type="submit" />
+                <input className='btn btn-primary my-12 mx-6 px-6 font-bold' type="submit" value="Submit Now" />
             </form>
         </div>
     );
 };
 
-
-/**
- * Three places to store images
- * 1. Third party image hosting server 
- * 2. File system of your server
- * 3. mongodb (database)
-*/
-
-export default AddDoctor;
+export default AddService;

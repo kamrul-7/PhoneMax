@@ -3,9 +3,11 @@ import DashboardLayout from '../../Layout/DashboardLayout';
 import Main from '../../Layout/Main';
 import Error from '../../others/Error';
 import Category from "../../pages/Categories/Category";
+import AddProduct from '../../pages/DashBoard/AddProduct/AddProduct';
 import AllUsers from '../../pages/DashBoard/AllUsers/AllUsers';
 import MyProducts from '../../pages/DashBoard/MyProducts/MyProducts';
 import ExtraSection from "../../pages/ExtraSection/ExtraSection";
+import AdvertisedItem from '../../pages/Home/AdvertisedItem/AdvertisedItem';
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/login/Login";
 import Products from "../../pages/Products/Products";
@@ -33,8 +35,18 @@ const router = createBrowserRouter([
             },
 
             {
+                path: '/signup',
+                element: <SignUp></SignUp>
+            },
+
+
+            {
                 path: '/about',
                 element: <Footer></Footer>
+            },
+            {
+                path: '/addProduct',
+                element: <AddProduct></AddProduct>
             },
             {
                 path: '/review',
@@ -56,7 +68,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <Error></Error>,
         children: [
 

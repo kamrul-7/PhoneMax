@@ -13,7 +13,7 @@ const Product = ({ item, setProduct }) => {
                 <div className='flex mt-6 justify-between'>
                     <div className='flex'>
                         <FaStar className='text-yellow-400 -mt-7 mr-4' />
-                        <p className='-mt-8'>{rating.number}</p>
+                        <p className='-mt-8'>{rating}</p>
                     </div>
 
                     <div className='flex '> <FaEye className='-mt-7 mr-4' />
