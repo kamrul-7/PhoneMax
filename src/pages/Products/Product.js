@@ -5,7 +5,7 @@ import useTitle from '../../hooks/title/UseTitle';
 import Loading from '../Loading/Loading';
 const Product = ({ item, setProduct }) => {
     useTitle('All Products')
-    const { isLoading } = useQuery
+    const { isLoading } = useQuery;
     const { title, total_view, rating, image_url, name, location, year_of_used, resale_price, original_price, time } = item;
     if (isLoading) {
         return <Loading></Loading>
