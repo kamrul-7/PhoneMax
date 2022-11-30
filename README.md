@@ -5,3 +5,4 @@ adminPassword: <MINDme777@#>
 # Its a second hand phone platform
 # In this project i used Tailwind, daisyUi, React Js, mongoDb, Firebase
 
+* Live Website Link: https://phonemax-a089c.web.app/
