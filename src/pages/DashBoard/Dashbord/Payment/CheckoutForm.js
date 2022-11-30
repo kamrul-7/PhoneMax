@@ -61,32 +61,32 @@ const CheckoutForm = () => {
 
     return (
         <>
-
-            <form onSubmit={handleSubmit} >
-                <CardElement
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
+            <div className='border-red-800'>
+                <form onSubmit={handleSubmit}>
+                    <CardElement
+                        options={{
+                            style: {
+                                base: {
+                                    fontSize: '16px',
+                                    color: '#424770',
+                                    '::placeholder': {
+                                        color: '#aab7c4',
+                                    },
+                                },
+                                invalid: {
+                                    color: '#9e2146',
                                 },
                             },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}
-                />
-                <button
-                    className='btn btn-sm mt-4 btn-primary'
-                    type="submit"
-                >
-                    Pay
-                </button>
-            </form>
-
+                        }}
+                    />
+                    <button
+                        className='btn btn-sm mt-4 btn-primary'
+                        type="submit"
+                    >
+                        Pay
+                    </button>
+                </form>
+            </div>
             <p className="text-red-500">{cardError}</p>
             {
                 success && <div>

@@ -52,12 +52,12 @@ const router = createBrowserRouter([
             {
                 path: "/category/:id",
                 element: <PrivateRoute><Category></Category></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://phonemax-server.vercel.appcategory/${params.id}`)
             },
             {
                 path: "/product",
                 element: <Products></Products>,
-                loader: () => fetch('http://localhost:5000/products')
+                loader: () => fetch('https://phonemax-server.vercel.appproducts')
             },
 
         ]

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ProductCategories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/product-categories')
+        fetch('https://phonemax-server.vercel.app/product-categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import ConfirmationModal from '../../../shared/ConfirmationModal/ConfirmationModal';
 
-import Loading from '../../Loading/Loading';
 
 const AllUsers = () => {
     const [deletingUser, setDeletingUser] = useState(null);
@@ -11,7 +10,7 @@ const AllUsers = () => {
         setDeletingUser(null)
     }
 
-    const { data: users = [], isLoading, refetch } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users')
@@ -21,7 +20,7 @@ const AllUsers = () => {
     });
 
     const handleDeleteUser = user => {
-        fetch(`http://localhost:5000/users/${user.id}`, {
+        fetch(`http://localhost:5000/users/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -36,10 +35,6 @@ const AllUsers = () => {
                 refetch();
             })
     }
-    if (isLoading) {
-        return <Loading></Loading>
-    }
-
     const handleMakeAdmin = id => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
@@ -65,7 +60,8 @@ const AllUsers = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Admin</th>
+                            <th>Status</th>
+                            <th>Change Status</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -76,12 +72,12 @@ const AllUsers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+                                <td>{user?.role}</td>
                                 <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-secondary'>Make Admin</button>}</td>
                                 <td>
-                                    <label onClick={() => setDeletingUser(user)} htmlFor="confirmationModal" className="btn btn-sm btn-error">Delete</label>
+                                    <label onClick={() => setDeletingUser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>
-                            </tr>
-                            )
+                            </tr>)
                         }
                     </tbody>
                 </table>
@@ -89,11 +85,13 @@ const AllUsers = () => {
             {
                 deletingUser && <ConfirmationModal
                     title={`Are you sure you want to delete?`}
-                    message={`If you delete ones, You can't be undone.`}
+                    message={`If you delete ${deletingUser.name}. It cannot be undone.`}
                     successAction={handleDeleteUser}
+                    successButtonName="Delete"
                     modalData={deletingUser}
-                    successButtonName='Delete'
-                    closeModal={closeModal}></ConfirmationModal>
+                    closeModal={closeModal}
+                >
+                </ConfirmationModal>
             }
         </div>
     );

@@ -16,7 +16,7 @@ const ManageProduct = () => {
         queryKey: ['Products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/Products', {
+                const res = await fetch('https://phonemax-server.vercel.app/Products', {
 
                 });
                 const data = await res.json();
@@ -30,7 +30,7 @@ const ManageProduct = () => {
 
 
     const handleDeleteProducts = Products => {
-        fetch(`http://localhost:5000/products/${Products._id}`, {
+        fetch(`https://phonemax-server.vercel.app/products/${Products._id}`, {
             method: 'DELETE',
 
         })
