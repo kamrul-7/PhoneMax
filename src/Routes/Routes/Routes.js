@@ -2,12 +2,14 @@ import { createBrowserRouter } from 'react-router-dom';
 import DashboardLayout from '../../Layout/DashboardLayout';
 import Main from '../../Layout/Main';
 import Error from '../../others/Error';
+import Blog from '../../pages/Blog/Blog';
 import Category from "../../pages/Categories/Category";
 import AddProduct from '../../pages/DashBoard/AddProduct/AddProduct';
 import AllUsers from '../../pages/DashBoard/AllUsers/AllUsers';
+import ManageProduct from '../../pages/DashBoard/Dashbord/ManageUser/ManageProduct';
+import Payment from '../../pages/DashBoard/Dashbord/Payment/Payment';
 import MyProducts from '../../pages/DashBoard/MyProducts/MyProducts';
 import ExtraSection from "../../pages/ExtraSection/ExtraSection";
-import AdvertisedItem from '../../pages/Home/AdvertisedItem/AdvertisedItem';
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/login/Login";
 import Products from "../../pages/Products/Products";
@@ -35,18 +37,13 @@ const router = createBrowserRouter([
             },
 
             {
-                path: '/signup',
-                element: <SignUp></SignUp>
-            },
-
-
-            {
                 path: '/about',
                 element: <Footer></Footer>
             },
+
             {
-                path: '/addProduct',
-                element: <AddProduct></AddProduct>
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/review',
@@ -54,7 +51,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/category/:id",
-                element: <Category></Category>,
+                element: <PrivateRoute><Category></Category></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
             },
             {
@@ -62,7 +59,6 @@ const router = createBrowserRouter([
                 element: <Products></Products>,
                 loader: () => fetch('http://localhost:5000/products')
             },
-
 
         ]
     },
@@ -79,6 +75,18 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allUsers',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: '/dashboard/addProduct',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/dashboard/manageUser',
+                element: <ManageProduct></ManageProduct>
+            },
+            {
+                path: '/dashboard/payment',
+                element: <Payment></Payment>
             },
 
         ]

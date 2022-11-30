@@ -1,3 +1,4 @@
+
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings`;
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
@@ -21,16 +22,17 @@ const MyProducts = () => {
     return (
         <div>
             <h1 className="text-3xl mb-5
-            ">My Appointment</h1>
+            ">My Products</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>no</th>
-                            <th>ProductName</th>
-                            <th>Email</th>
-                            <th>Resale Price</th>
-                            <th>Location</th>
+                            <th></th>
+                            <th>Product Name</th>
+                            <th>Seller Name</th>
+                            <th>Price</th>
+                            <th>Phone</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,13 +40,19 @@ const MyProducts = () => {
                         {
                             bookings?.map((booking, i) => <tr key={booking._id}>
                                 <th>{i + 1}</th>
-                                <td>{booking.
-                                    itemName}</td>
-                                <td>{booking.email}</td>
+                                <td>{booking.itemName}</td>
+                                <td>{booking.sellerName}</td>
                                 <td>{booking.price}</td>
-                                <td>{booking.location}</td>
+                                <td>{booking.phone}</td>
 
-
+                                <td>
+                                    {
+                                        booking.price && !booking.paid && <Link to={'/dashboard/payment'}><button className='btn btn-secondary btn-sm'>Pay</button></Link>
+                                    }
+                                    {
+                                        booking.price && booking.paid && <span className='text-secondary'>paid</span>
+                                    }
+                                </td>
                             </tr>)
                         }
 

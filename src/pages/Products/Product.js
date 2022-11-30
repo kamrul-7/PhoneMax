@@ -31,7 +31,7 @@ const Product = ({ item, setProduct }) => {
                     <p className='ml-4'><small>Used {year_of_used} years</small> </p>
 
                 </div>
-                <div className='card-actions justify-center'>
+                <div className='card-actions justify-center mt-6'>
                     <label
                         htmlFor="booking-modal" className="btn btn-secondary text-white px-12"
                         onClick={() => setProduct(item)}

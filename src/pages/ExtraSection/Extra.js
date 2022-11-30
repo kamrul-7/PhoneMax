@@ -5,7 +5,7 @@ const Extra = ({ section }) => {
     useTitle('Review')
     const { name, icon, bgClass } = section;
     return (
-        <div className={`card p-6 md:card-side shadow-xl px-6 ${bgClass}`}>
+        <div className={`card p-6 md:card-side shadow-xl px-6 my-12 ${bgClass}`}>
             <figure>
                 <img src={icon} alt="img" />
             </figure>

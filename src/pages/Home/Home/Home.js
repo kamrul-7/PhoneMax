@@ -16,7 +16,7 @@ const Home = () => {
             <ProductCategories></ProductCategories>
             <ExtraSection></ExtraSection>
 
-            <h2>This is home</h2>
+
         </div>
     );
 };

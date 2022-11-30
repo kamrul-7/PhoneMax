@@ -1,6 +1,17 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+
+#Project name: PhoneMax
+
+#Using React js, Tailwind, DaisyUi
+
+
+
+
+
+
+
 /node_modules
 /.pnp
 .pnp.js

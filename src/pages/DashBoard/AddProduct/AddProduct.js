@@ -3,10 +3,10 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import useTitle from '../../../hooks/title/UseTitle';
 
-const AddService = () => {
+const AddProduct = () => {
     useTitle('Add Product')
     const navigate = useNavigate()
-    const handlePlaceComment = event => {
+    const handleProduct = event => {
 
         event.preventDefault();
         const form = event.target;
@@ -57,7 +57,7 @@ const AddService = () => {
     }
     return (
         <div>
-            <form onSubmit={handlePlaceComment}>
+            <form onSubmit={handleProduct}>
 
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 my-12'>
@@ -78,4 +78,4 @@ const AddService = () => {
     );
 };
 
-export default AddService;
+export default AddProduct;
