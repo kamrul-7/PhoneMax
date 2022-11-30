@@ -14,14 +14,14 @@ const AllUsers = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
+            const res = await fetch('https://phonemax-server.vercel.app/users')
             const data = await res.json();
             return data;
         }
     });
 
     const handleDeleteUser = user => {
-        fetch(`http://localhost:5000/users/${user.id}`, {
+        fetch(`https://phonemax-server.vercel.app/users/${user.id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -41,7 +41,7 @@ const AllUsers = () => {
     }
 
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://phonemax-server.vercel.app/users/admin`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -65,7 +65,8 @@ const AllUsers = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Admin</th>
+                            <th>Status</th>
+                            <th>Make Admin</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -76,6 +77,7 @@ const AllUsers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+                                <td>{user.role}</td>
                                 <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-secondary'>Make Admin</button>}</td>
                                 <td>
                                     <label onClick={() => setDeletingUser(user)} htmlFor="confirmationModal" className="btn btn-sm btn-error">Delete</label>
