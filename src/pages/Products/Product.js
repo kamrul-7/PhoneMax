@@ -1,10 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaStar, FaEye } from "react-icons/fa";
 import useTitle from '../../hooks/title/UseTitle';
+import Loading from '../Loading/Loading';
 const Product = ({ item, setProduct }) => {
     useTitle('All Products')
+    const { isLoading } = useQuery
     const { title, total_view, rating, image_url, name, location, year_of_used, resale_price, original_price, time } = item;
-
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div className="card card-compact m-12 bg-base-100 shadow-xl bg-#f5dfdf-200">
             <figure><img className='m-2' src={image_url} alt="" /></figure>
